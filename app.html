@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Habits - HabitFlow</title>
+    <link rel="stylesheet" href="app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Today's Habits</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="summary.html">Summary</a>
+            </nav>
+        </header>
+
+        <form id="add-habit-form">
+            <h2>Add a New Habit</h2>
+            <div class="form-group">
+                <input type="text" id="habit-title" placeholder="e.g., Workout" required>
+                <select id="habit-frequency">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="habit-color">Label Color:</label>
+                <input type="color" id="habit-color" value="#667eea">
+                <button type="submit">Add Habit</button>
+            </div>
+        </form>
+
+        <div id="habit-list-container">
+            <h2>Today's Timetable</h2>
+            <div id="habit-list">
+                </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
