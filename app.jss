@@ -2,19 +2,70 @@ document.addEventListener('DOMContentLoaded', () => {
     const habitForm = document.getElementById('add-habit-form');
     const habitList = document.getElementById('habit-list');
 
-    // Load habits from local storage
-    const getHabits = () => {
-        return JSON.parse(localStorage.getItem('habits')) || [];
+    // Initialize Supabase client
+    const supabaseUrl = 'YOUR_SUPABASE_URL';
+    const supabaseKey = 'YOUR_SUPABASE_PUBLIC_KEY';
+    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+    // Get habits from Supabase
+    const getHabits = async () => {
+        const { data, error } = await supabase
+            .from('habits')
+            .select('*')
+            .order('created_at', { ascending: false });
+        
+        if (error) {
+            console.error('Error fetching habits:', error);
+            return [];
+        }
+        
+        return data;
     };
 
-    // Save habits to local storage
-    const saveHabits = (habits) => {
-        localStorage.setItem('habits', JSON.stringify(habits));
+    // Save a new habit to Supabase
+    const saveHabit = async (habit) => {
+        const { data, error } = await supabase
+            .from('habits')
+            .insert([habit])
+            .select();
+        
+        if (error) {
+            console.error('Error saving habit:', error);
+        }
+        
+        return data;
+    };
+
+    // Update habit completion status in Supabase
+    const updateHabit = async (id, updates) => {
+        const { data, error } = await supabase
+            .from('habits')
+            .update(updates)
+            .eq('id', id)
+            .select();
+        
+        if (error) {
+            console.error('Error updating habit:', error);
+        }
+        
+        return data;
+    };
+
+    // Delete habit from Supabase
+    const deleteHabit = async (id) => {
+        const { error } = await supabase
+            .from('habits')
+            .delete()
+            .eq('id', id);
+        
+        if (error) {
+            console.error('Error deleting habit:', error);
+        }
     };
 
     // Render habits to the page
-    const renderHabits = () => {
-        const habits = getHabits();
+    const renderHabits = async () => {
+        const habits = await getHabits();
         habitList.innerHTML = ''; // Clear the list before rendering
 
         if (habits.length === 0) {
@@ -22,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         
-        habits.forEach((habit, index) => {
+        habits.forEach((habit) => {
             const habitItem = document.createElement('div');
             habitItem.classList.add('habit-item');
             if (habit.completed) {
@@ -33,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
             habitItem.innerHTML = `
                 <span>${habit.title}</span>
                 <div class="habit-actions">
-                    <button class="btn-complete" data-index="${index}">✔</button>
-                    <button class="btn-delete" data-index="${index}">✖</button>
+                    <button class="btn-complete" data-id="${habit.id}">✔</button>
+                    <button class="btn-delete" data-id="${habit.id}">✖</button>
                 </div>
             `;
             habitList.appendChild(habitItem);
@@ -42,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     // Add a new habit
-    habitForm.addEventListener('submit', (e) => {
+    habitForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const title = document.getElementById('habit-title').value;
@@ -54,32 +105,33 @@ document.addEventListener('DOMContentLoaded', () => {
             frequency,
             color,
             completed: false,
-            createdAt: new Date().toISOString()
+            created_at: new Date().toISOString()
         };
 
-        const habits = getHabits();
-        habits.push(newHabit);
-        saveHabits(habits);
-
+        await saveHabit(newHabit);
         habitForm.reset();
-        renderHabits();
+        await renderHabits();
     });
 
     // Handle complete and delete actions
-    habitList.addEventListener('click', (e) => {
-        const habits = getHabits();
-        const index = e.target.dataset.index;
+    habitList.addEventListener('click', async (e) => {
+        const habitId = e.target.dataset.id;
 
         if (e.target.classList.contains('btn-complete')) {
-            habits[index].completed = !habits[index].completed;
+            // Get current completion status
+            const habits = await getHabits();
+            const habit = habits.find(h => h.id == habitId);
+            
+            if (habit) {
+                await updateHabit(habitId, { completed: !habit.completed });
+            }
         }
         
         if (e.target.classList.contains('btn-delete')) {
-            habits.splice(index, 1); // Remove the habit from the array
+            await deleteHabit(habitId);
         }
 
-        saveHabits(habits);
-        renderHabits();
+        await renderHabits();
     });
 
     // Initial render
