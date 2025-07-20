@@ -1,23 +1,32 @@
-// Auth functions
-document.addEventListener('DOMContentLoaded', async () => {
-  const { data: { user } } = await supabase.auth.getUser();
+// Login form submission
+document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
   
-  if (!user) {
-    window.location.href = 'login.html';
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+  
+  if (error) {
+    showNotification('Login failed: ' + error.message, 'error');
   } else {
-    // User is logged in, load their data
-    loadTodayHabits();
-    loadStats();
+    window.location.href = 'index.html';
   }
 });
 
-// Logout
-document.getElementById('logoutBtn')?.addEventListener('click', async () => {
-  const { error } = await supabase.auth.signOut();
-  if (!error) {
-    window.location.href = 'login.html';
+// Google login
+document.getElementById('googleLogin')?.addEventListener('click', async () => {
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin + '/index.html'
+    }
+  });
+  
+  if (error) {
+    showNotification('Google login failed: ' + error.message, 'error');
   }
 });
-
-// You'll need to create a simple login.html page with email/password fields
-// and use supabase.auth.signInWithPassword() or supabase.auth.signInWithOAuth()
