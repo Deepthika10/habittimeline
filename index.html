@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker - Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Include Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/utils.js" defer></script>
+  <script src="js/auth.js" defer></script>
+  <script src="js/habits.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Habit Tracker</h1>
+    <nav>
+      <a href="index.html">Dashboard</a>
+      <a href="habits.html">My Habits</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="analytics.html">Analytics</a>
+      <button id="logoutBtn">Logout</button>
+      <button id="themeToggle">Dark Mode</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="today-habits">
+      <h2>Today's Habits</h2>
+      <div id="habits-container" class="habits-grid">
+        <!-- Habits will be loaded here -->
+      </div>
+      <button id="add-habit-btn" class="btn-primary">+ Add New Habit</button>
+    </section>
+
+    <section id="stats">
+      <h2>Your Stats</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Current Streak</h3>
+          <p id="current-streak">0 days</p>
+        </div>
+        <div class="stat-card">
+          <h3>Completion Rate</h3>
+          <p id="completion-rate">0%</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Habits</h3>
+          <p id="total-habits">0</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Add Habit Modal -->
+  <div id="add-habit-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Add New Habit</h2>
+      <form id="habit-form">
+        <div class="form-group">
+          <label for="habit-name">Habit Name</label>
+          <input type="text" id="habit-name" required>
+        </div>
+        <div class="form-group">
+          <label for="habit-frequency">Frequency</label>
+          <select id="habit-frequency" required>
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="habit-start-date">Start Date</label>
+          <input type="date" id="habit-start-date" required>
+        </div>
+        <div class="form-group">
+          <label for="habit-color">Color</label>
+          <input type="color" id="habit-color" value="#3b82f6">
+        </div>
+        <div class="form-group">
+          <label for="habit-reminder">Reminder Time (optional)</label>
+          <input type="time" id="habit-reminder">
+        </div>
+        <button type="submit" class="btn-primary">Save Habit</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2023 Habit Tracker</p>
+  </footer>
+</body>
+</html>
