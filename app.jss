@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const habitList = document.getElementById('habit-list');
 
     // Initialize Supabase client
-    const supabaseUrl = 'YOUR_SUPABASE_URL';
-    const supabaseKey = 'YOUR_SUPABASE_PUBLIC_KEY';
+    const supabaseUrl = https://duglbeirfwecjmpioztz.supabase.co;
+    const supabaseKey = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1Z2xiZWlyZndlY2ptcGlvenR6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMwMDIyNjYsImV4cCI6MjA2ODU3ODI2Nn0.EtKtxQWVm3p89h8QZxXSTVrw-3pY1WcYOKthpugDGUM;
     const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
     // Get habits from Supabase
