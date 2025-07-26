@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Summary | Joyful Habits</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="app.html" class="back-link">&larr; Back to Dashboard</a>
+            <h1 id="summary-habit-title">Loading...</h1>
+        </header>
+
+        <main class="summary-main">
+            <h2>Completion History</h2>
+            <div id="completion-history" class="history-list">
+                <p>Loading history...</p>
+            </div>
+
+            <div class="danger-zone">
+                <h3>Danger Zone</h3>
+                <p>Deleting a habit is permanent. All of its history will be removed.</p>
+                <button id="delete-habit-btn" class="delete-btn">Delete This Habit</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-client.js"></script>
+    <script src="js/summary.js"></script>
+</body>
+</html>
