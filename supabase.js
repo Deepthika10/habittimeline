@@ -1,7 +1,5 @@
-// Initialize Supabase
-const supabaseUrl = 'https://qhwesptqzazkrkertqbw.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFod2VzcHRxemF6a3JrZXJ0cWJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM1MTY3MTAsImV4cCI6MjA2OTA5MjcxMH0.wOJ7DDaZt046oz9jBTKh4EuRyfLDiA3Z7BfwagTrjHU';
+// js/supabase-client.js
+const SUPABASE_URL = 'YOUR_SUPABASE_URL'; // Paste your URL here
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY'; // Paste your anon key here
 
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-export default supabase;
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
