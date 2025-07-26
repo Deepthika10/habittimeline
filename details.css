@@ -1,0 +1,187 @@
+/* Habit Details Styles */
+.habit-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+}
+
+.habit-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.habit-meta {
+  display: flex;
+  gap: var(--space-lg);
+  margin: var(--space-md) 0 var(--space-xl);
+}
+
+.habit-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-muted);
+}
+
+.habit-meta-item i {
+  color: var(--primary-blue);
+}
+
+.habit-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* Progress Chart */
+.progress-container {
+  background-color: var(--card-bg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--light-gray);
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.progress-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.progress-stats {
+  display: flex;
+  gap: var(--space-xl);
+}
+
+.progress-stat {
+  text-align: center;
+}
+
+.progress-stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+}
+
+.progress-stat-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: var(--light-gray);
+  border-radius: var(--radius-full);
+  margin-top: var(--space-lg);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-blue), var(--secondary-pink));
+  border-radius: var(--radius-full);
+  transition: width 1s ease;
+}
+
+/* Logs Container */
+.logs-container {
+  background-color: var(--card-bg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--light-gray);
+}
+
+.logs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.logs-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.logs-list {
+  list-style: none;
+}
+
+.log-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.log-item:last-child {
+  border-bottom: none;
+}
+
+.log-date {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.log-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.log-status.completed {
+  color: var(--success-green);
+}
+
+.log-status.missed {
+  color: var(--danger-red);
+}
+
+.log-actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+/* Mood Indicator */
+.mood-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 126, 185, 0.2);
+  color: var(--secondary-pink);
+  font-size: 0.75rem;
+}
+
+/* Responsive Details */
+@media (max-width: 768px) {
+  .habit-detail-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-md);
+  }
+  
+  .habit-meta {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .progress-stats {
+    gap: var(--space-lg);
+  }
+}
