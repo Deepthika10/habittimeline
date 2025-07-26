@@ -1,61 +1,301 @@
+/* css/style.css */
 :root {
-  /* Pink & Blue Color Palette */
-  --primary-blue: #4A6CF7;
-  --primary-blue-light: #6D8AFF;
-  --primary-blue-dark: #2A4BD9;
-  --secondary-pink: #FF7EB9;
-  --secondary-pink-light: #FFA3D1;
-  --secondary-pink-dark: #FF5C9D;
-  --accent-yellow: #FFD166;
-  --success-green: #06D6A0;
-  --warning-orange: #FF9E1B;
-  --danger-red: #EF476F;
-  
-  /* Neutrals */
-  --white: #FFFFFF;
-  --light-bg: #F8FAFF;
-  --light-gray: #EFF2F9;
-  --medium-gray: #CBD0DD;
-  --dark-gray: #6B7280;
-  --dark-text: #1F2937;
-  --black: #000000;
-  
-  /* Theme Variables */
-  --primary: var(--primary-blue);
-  --primary-light: var(--primary-blue-light);
-  --primary-dark: var(--primary-blue-dark);
-  --secondary: var(--secondary-pink);
-  --secondary-light: var(--secondary-pink-light);
-  --secondary-dark: var(--secondary-pink-dark);
-  
-  /* Backgrounds */
-  --bg-color: var(--light-bg);
-  --card-bg: var(--white);
-  --sidebar-bg: linear-gradient(135deg, var(--primary-blue) 0%, #3A56E8 100%);
-  
-  /* Text */
-  --text-color: var(--dark-text);
-  --text-light: var(--white);
-  --text-muted: var(--dark-gray);
-  
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(50, 74, 247, 0.12);
-  --shadow-md: 0 4px 6px rgba(50, 74, 247, 0.1);
-  --shadow-lg: 0 10px 25px rgba(50, 74, 247, 0.15);
-  --shadow-xl: 0 20px 50px rgba(50, 74, 247, 0.2);
-  --shadow-pink: 0 5px 15px rgba(255, 126, 185, 0.3);
-  
-  /* Transitions */
-  --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-full: 9999px;
-  
-  /* Spacing */
-  --space-xs: 4p
+    --bg-color: #fdf6f8; /* Very light pink background */
+    --card-color: #ffffff; /* White for cards */
+    --text-color: #333;
+    --primary-blue: #81c7f5; /* Soft blue */
+    --primary-pink: #f7a8b8; /* Pleasant pink */
+    --primary-pink-hover: #f592a6;
+    --delete-color: #ef4444;
+    --delete-hover: #dc2626;
+    --font-family-body: 'Poppins', sans-serif;
+    --font-family-heading: 'Playfair Display', serif;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
+}
+
+body {
+    font-family: var(--font-family-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* --- Welcome Page Styles --- */
+.welcome-page {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-pink));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 40px);
+    text-align: center;
+    border-radius: 20px;
+}
+
+.welcome-container {
+    color: white;
+    padding: 2rem;
+}
+
+.welcome-title {
+    font-family: var(--font-family-heading);
+    font-size: 3.5rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.welcome-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
+
+.welcome-button {
+    background-color: white;
+    color: var(--primary-pink);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+}
+
+.welcome-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* --- App & Summary Page Shared Styles --- */
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-pink);
+}
+
+header #current-date {
+    font-size: 1.1rem;
+    color: #888;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.habits-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+}
+
+.habits-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.add-btn {
+    background-color: var(--primary-pink);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 2rem;
+    line-height: 48px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+}
+
+.add-btn:hover {
+    background-color: var(--primary-pink-hover);
+    transform: scale(1.1) rotate(90deg);
+}
+
+.habits-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.habit-item {
+    background-color: var(--card-color);
+    border-radius: var(--border-radius);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    border-left: 8px solid var(--primary-blue);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.habit-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.habit-item p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.completion-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.completion-btn.completed {
+    background-color: var(--primary-pink);
+    border-color: var(--primary-pink);
+    transform: scale(1.1);
+}
+
+/* --- Summary Page --- */
+.summary-main h2 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+    color: var(--primary-blue);
+}
+
+.history-list p {
+    padding: 1rem;
+    background-color: #f1f5f9;
+    border-radius: 8px;
+}
+
+.danger-zone {
+    margin-top: 2rem;
+    padding: 1rem;
+    border: 2px dashed var(--delete-color);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+.danger-zone h3 {
+    color: var(--delete-color);
+    margin-top: 0;
+}
+
+.delete-btn {
+    background-color: var(--delete-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: var(--delete-hover);
+}
+
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--card-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 450px;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: var(--primary-pink);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group input[type="color"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+input[type="color"] {
+    height: 48px;
+}
+
+.form-actions {
+    text-align: right;
+}
+
+.submit-btn {
+    background-color: var(--primary-pink);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-pink-hover);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #aaa;
+    cursor: pointer;
+}
